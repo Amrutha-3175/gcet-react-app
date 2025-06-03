@@ -1,43 +1,50 @@
-
 import React, { useState } from "react";
+import { AppContext } from "../App";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Form.css";
-
-const Login = ({ setUser }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    if (email === "test@example.com" && password === "1234") {
-      setUser({ name: "Test User", email });
-      navigate("/home");
+export default function Login() {
+  const { users, user, setUser } = useContext(AppContext);
+  const [msg, setMsg] = useState();
+  const Navigate = useNavigate();
+  const handleSubmit = () => {
+    const found = users.find(
+      (value) => value.email === user.email && value.pass === user.pass
+    );
+    if (found) {
+      setMsg("Welcome " + found.name);
+      setUser({ ...user, name: found.name, token: "123" });
+      Navigate("/");
     } else {
-      setError("Wrong email or password!");
+      setMsg("Invalid User or Password");
     }
   };
 
+  const goToRegister = () => {
+    Navigate("/register");
+  };
+
   return (
-    <div className="form-container">
-      <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      {error && <p className="error">{error}</p>}
-      <button onClick={handleLogin}>Submit</button>
-      <button onClick={() => navigate("/register")}>Create Account</button>
+    <div style={{ margin: "30px" }}>
+      <h3>Login</h3>
+      {msg}
+      <p>
+        <input
+          type="text"
+          placeholder="Email address"
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+      </p>
+      <p>
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setUser({ ...user, pass: e.target.value })}
+        />
+      </p>
+      <button onClick={handleSubmit}>Submit</button>
+      <p>
+        <button onClick={goToRegister}>Create Account</button>
+      </p>
     </div>
   );
-};
-
-export default Login;
+}
