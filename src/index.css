@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Playfair Display', serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #5b3a29; /* deep brown text */
+  background-color: #fdf6e3; /* warm beige */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +17,13 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: #c29500; /* rich mustard yellow */
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #8a5800; /* deep golden brown */
 }
 
 body {
@@ -28,41 +32,51 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(to bottom right, #fff8e7, #fbecc3); /* soft beige-yellow blend */
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: #4b2e20; /* elegant brown */
 }
 
+/* Button styling */
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #d4b483;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #f5deb3; /* wheat/beige */
+  color: #4a3523; /* brown text */
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: all 0.3s ease;
 }
 
+button:hover {
+  background-color: #e4c17d;
+  border-color: #caa755;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid #dec186;
+}
+
+/* Light mode preference */
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: #4b2e20;
+    background-color: #fff9ed;
   }
+
   a:hover {
-    color: #747bff;
+    color: #a46b00;
   }
+
   button {
-    background-color: #f9f9f9;
+    background-color: #f7e1b5;
   }
 }
